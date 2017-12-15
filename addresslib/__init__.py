@@ -2,7 +2,10 @@
 
 from email.parser import Parser
 from email.utils import getaddresses
-from email.headerregistry import Address
+try:
+    from email.headerregistry import Address
+except ImportError:
+    from compat import Address
 
 
 __all__ = [
