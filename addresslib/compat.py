@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from email.utils import parseaddr
+from email.utils import formataddr, parseaddr
 
 
 class Address(object):
@@ -37,10 +37,7 @@ class Address(object):
             self.display_name, self.username, self.domain)
 
     def __str__(self):
-        if self.display_name:
-            return '{} <{}>'.format(self.display_name, self.addr_spec)
-        else:
-            return self.addr_spec
+        return formataddr((self.display_name, self.addr_spec))
 
     def __eq__(self, other):
         if type(other) != type(self):

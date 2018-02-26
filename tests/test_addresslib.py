@@ -22,6 +22,16 @@ class ParserTest(unittest.TestCase):
         self.assertEqual('Jane', address.username)
         self.assertEqual('example.com', address.domain)
 
+        address = addresslib.parse('jane.doe@example.com <jane@example.com>')
+        self.assertEqual('', address.display_name)
+        self.assertEqual('jane.doe', address.username)
+        self.assertEqual('example.com', address.domain)
+
+        address = addresslib.parse('"jane.doe@example.com" <jane@example.com>')
+        self.assertEqual('jane.doe@example.com', address.display_name)
+        self.assertEqual('jane', address.username)
+        self.assertEqual('example.com', address.domain)
+
     def test_multiple_addresses(self):
         addresses = addresslib.parse_list(
             'joe@example.com, <joe@example.com>, Jane Doe <jane@example.com>'
@@ -36,3 +46,10 @@ class ParserTest(unittest.TestCase):
             display_name='Jane Doe', addr_spec='jane@example.com'
         )
         self.assertEqual('Jane Doe <jane@example.com>', str(address))
+
+        address = addresslib.parse('jane.doe@example.com <jane@example.com>')
+        self.assertEqual('jane.doe@example.com', str(address))
+
+        address = addresslib.parse('"jane.doe@example.com" <jane@example.com>')
+        self.assertEqual(
+            '"jane.doe@example.com" <jane@example.com>', str(address))
