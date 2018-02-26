@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+from __future__ import unicode_literals
+
 from email.utils import formataddr, parseaddr
 
 
@@ -37,7 +39,7 @@ class Address(object):
             self.display_name, self.username, self.domain)
 
     def __str__(self):
-        return formataddr((self.display_name, self.addr_spec))
+        return formataddr((unicode(self.display_name), self.addr_spec))
 
     def __eq__(self, other):
         if type(other) != type(self):
