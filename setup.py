@@ -9,11 +9,12 @@ except ImportError:
 setup(
     name='python-addresslib',
     packages=['addresslib'],
-    version='1.0.2',
+    version='1.0.3',
     description='Python email address parsing library',
     author='Alexei',
     author_email='hello@alexei.ro',
     url='https://github.com/alexei/python-addresslib',
     download_url='https://github.com/alexei/python-addresslib/archive/1.0.2.tar.gz',  # noqa
-    keywords=['email address parser']
+    keywords=['email address parser'],
+    install_requires=['future'],
 )
