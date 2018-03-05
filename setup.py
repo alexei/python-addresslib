@@ -16,5 +16,4 @@ setup(
     url='https://github.com/alexei/python-addresslib',
     download_url='https://github.com/alexei/python-addresslib/archive/1.0.2.tar.gz',  # noqa
     keywords=['email address parser'],
-    install_requires=['future'],
 )
