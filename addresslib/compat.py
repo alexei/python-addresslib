@@ -2,6 +2,8 @@
 
 from __future__ import unicode_literals
 
+from builtins import str
+
 from email.utils import formataddr, parseaddr
 
 
@@ -13,7 +15,7 @@ class Address(object):
                 display_name = _display_name
             username, domain = address.split('@')
 
-        self._display_name = display_name
+        self._display_name = str(display_name)
         self._username = username
         self._domain = domain
 
@@ -39,7 +41,7 @@ class Address(object):
             self.display_name, self.username, self.domain)
 
     def __str__(self):
-        return formataddr((unicode(self.display_name), self.addr_spec))
+        return formataddr((self.display_name, self.addr_spec))
 
     def __eq__(self, other):
         if type(other) != type(self):

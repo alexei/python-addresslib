@@ -1,5 +1,9 @@
 # -*- coding: utf-8 -*-
 
+from __future__ import unicode_literals
+
+from builtins import str
+
 import unittest
 
 import addresslib
@@ -53,3 +57,7 @@ class ParserTest(unittest.TestCase):
         address = addresslib.parse('"jane.doe@example.com" <jane@example.com>')
         self.assertEqual(
             '"jane.doe@example.com" <jane@example.com>', str(address))
+
+    def test_unicode_name(self):
+        address = addresslib.parse('Cláudia <claudia@example.com>')
+        self.assertEqual('Cláudia <claudia@example.com>', str(address))
