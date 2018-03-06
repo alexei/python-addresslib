@@ -2,14 +2,15 @@
 
 from __future__ import unicode_literals
 
+from builtins import str
+
 from email.parser import Parser
 from email.utils import getaddresses
 try:
     from email.headerregistry import Address
-    text = str
 except ImportError:
     from compat import Address
-    text = unicode
+from io import StringIO
 
 
 __all__ = [
@@ -22,8 +23,8 @@ def parse(s):
 
 
 def parse_list(s):
-    s = text(s)
-    headers = Parser().parsestr('To: {}'.format(s))
+    s = str(s)
+    headers = Parser().parse(StringIO('To: {}'.format(s)))
     addresses = []
     address = None
     for display_name, addr_spec in getaddresses(headers.get_all('to', [])):
